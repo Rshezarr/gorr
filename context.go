@@ -3,7 +3,7 @@ package gorr
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -46,7 +46,7 @@ func (ctx *Context) WriteError(code int, err string) {
 }
 
 func (ctx *Context) ReadBody(data interface{}) error {
-	body, err := ioutil.ReadAll(ctx.Request.Body)
+	body, err := io.ReadAll(ctx.Request.Body)
 	if err != nil {
 		return err
 	}
